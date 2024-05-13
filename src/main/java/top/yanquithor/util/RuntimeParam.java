@@ -17,14 +17,18 @@ public final class RuntimeParam {
     private RuntimeParam(){}
     
     private void loadAll() {
-        try (Reader reader = new FileReader("")) {
+        try (Reader reader = new FileReader("config/setting.properties")) {
             setting.load(reader);
+            log.info("Read setting successfully.");
+            setting.forEach((key,value) -> log.debug("  {}={}",key,value));
         } catch (Exception e) {
             ExceptionLogger.toLogger(e, LoggerFactory.getLogger(getClass()));
             return;
         }
-        try (Reader reader = new FileReader("")){
+        try (Reader reader = new FileReader("lang\\" + setting.getProperty("lang") + ".language")){
             language.load(reader);
+            log.info("System language setting to {}",setting.getProperty("lang"));
+            language.forEach((key,value) -> log.debug("  {}={}",key,value));
         } catch (Exception e){
             ExceptionLogger.toLogger(e, LoggerFactory.getLogger(getClass()));
         }

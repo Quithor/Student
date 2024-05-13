@@ -3,7 +3,6 @@ module student {
     requires javafx.fxml;
     requires javafx.controls;
     requires org.slf4j;
-    requires com.alibaba.fastjson2;
     requires java.sql;
     
     exports top.yanquithor.fxml;
